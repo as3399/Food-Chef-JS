@@ -10,11 +10,9 @@
    <link rel="stylesheet" href="./index.css">>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
-
 <body>
     <div id=body>
         <nav id="navbar">
@@ -52,8 +50,6 @@
                     <div id="updatebtnbox1"></div>
                     <br></br>
                     <input type="button" onclick="AllData();" class="btn btn-primary" value="Get all Dishes">
-
-
                 </form>
             </div>
             <div id="container2">
@@ -80,6 +76,7 @@
             <table class="mytable">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Dish</th>
                         <th>Image</th>
                         <th>Ingredients</th>
@@ -114,7 +111,8 @@
         }
         else if (IngQuan == "" || IngQuan == 0) {
             alert("Enter the Quantity of Ingredient");
-        }
+        } 
+
         else {
             var Ing = {
                 name: Ingname,
@@ -182,13 +180,24 @@
         const imglink = $("#input5").val();
         const Tarea = $("#input4").val();
         const Dishop = $("#dishOP");
+        const Dishopval = $("#dishOP").val();
         const recipeop = $("#recipeOP");
+        const Ingname = $("#input2").val();
 
         if (dish == "") {
             alert("Please Enter Dish Name");
         }
         else if (Tarea == "") {
             alert("Enter the Recipe");
+        }
+        else if(Iarr == "") {
+            alert("Enter the Ingredients")
+        }
+        else if(imglink ==""){
+            alert("Enter Dish image link");
+        }
+        else if(dish == Dishopval){
+            alert("Enter a new Dish");
         }
         else {
             dname = {

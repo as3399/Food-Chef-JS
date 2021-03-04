@@ -7,7 +7,7 @@
     <meta name="viewport" content="width==, initial-scale=1.0">
     <title>Food Chef Task</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" href="./22388-5-burger-food (copy).png">
-   <link rel="stylesheet" href="./index.css">>
+   <link rel="stylesheet" href="./index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -29,8 +29,9 @@
                     <br></br>
                     <input type="link" placeholder="Add Image link" id="input5"><br></br>
                     <input type="text" placeholder="Enter Your Ingredients" id="input2">
-                    <br></br><input placeholder="Enter Your Quantity" type="number" id="input3">
+                    <br></br><input placeholder="Enter Your Quantity" type="number" min="0" id="input3">
                     <select id="choose">
+                        <option disabled selected value style="display: none;">Select</option>
                         <option value="grams">grams</option>
                         <option value="litre">Litre</option>
                         <option value="kilograms">kg</option>
@@ -76,7 +77,7 @@
             <table class="mytable">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>No.</th>
                         <th>Dish</th>
                         <th>Image</th>
                         <th>Ingredients</th>
@@ -112,7 +113,9 @@
         else if (IngQuan == "" || IngQuan == 0) {
             alert("Enter the Quantity of Ingredient");
         } 
-
+        else if(select == null){
+            alert("Enter Ingredient Unit")
+        }
         else {
             var Ing = {
                 name: Ingname,
@@ -121,12 +124,14 @@
             }
             Iarr.push(Ing);
             console.log(Iarr);
+            ReadIng();
+            $("#input3").val("");
+            $("#input2").val("");
+            $("#choose").val(null);
+            
+        }
         }
 
-        ReadIng();
-        $("#input3").val("");
-        $("#input2").val("");
-    }
 
     //=============================Read===============================//
     function ReadIng() {
@@ -142,6 +147,7 @@
                                   <tr>`
         }
         $("#listbox").html(x);
+       
     }
 
     //============================Table========================================//
@@ -191,7 +197,7 @@
             alert("Enter the Recipe");
         }
         else if(Iarr == "") {
-            alert("Enter the Ingredients")
+            alert("Add Ingredient")
         }
         else if(imglink ==""){
             alert("Enter Dish image link");
@@ -211,8 +217,8 @@
             Dishop.text(dname.Dish);
             recipeop.text(dname.Recipe);
             localStorage.setItem("Dishes", JSON.stringify(Darr));
-            Iarr = [];
             alert("Your Dish has been Added.");
+            Iarr = [];
         }
     }
 
@@ -221,6 +227,7 @@
         $("#containers").css("display", "none");
         $("#finaltable").css("display", "block");
         $("#backbtn").css("display", "inline");
+        Iarr=[];
         ReadDish();
     }
 
@@ -239,6 +246,7 @@
         document.getElementById("dishOP").innerHTML = '';
         document.getElementById("recipeOP").innerHTML = '';
         document.getElementById("listbox").innerHTML = '';
+        Iarr=[];
         ReadIng();
     }
 
@@ -265,7 +273,14 @@
     }
 
     //==================================Edit===========================================//  
-
+    function getdata(index5){
+        const dataget = JSON.parse(localStorage.getItem("Dishes"));
+        var inglist = dataget[index5];
+        for(i=0; i < inglist.Ingredients.length; i++){
+            Iarr.push(inglist.Ingredients[i]);
+        }        
+        ReadIng();
+    }
     //Ingredient
     function EditIng(index2) {
         const Updatebtnbox = document.getElementById("updatebtnbox");
@@ -277,6 +292,7 @@
         $("#input2").val(value.name);
         $("#input3").val(value.quantity);
         $("#choose").val(value.unit);
+
     }
 
     //Table
@@ -296,6 +312,7 @@
         Dishop.innerHTML = DishName[index].Dish;
         listbox.innerHTML = "";
         Updatebtnbox1.html(`<input type= "button" class="btn btn-success ptn-sm" id="btn4" value = "Update" onclick="Update(${index})"> `)
+        getdata(`${index}`);
     }
 
     //===============================Update====================================//

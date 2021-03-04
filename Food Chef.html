@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width==, initial-scale=1.0">
+    <title>Food Chef Task</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" href="./22388-5-burger-food (copy).png">
+    <!-- <    <link rel="stylesheet" href="./Foodchef.css">> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<style>
+    * {
+        margin: 0px 0px;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+        background: url(./AdobeStock_111615673.jpeg);
+        background-size: cover;
+    }
+
+    #navbar {
+        background: black;
+        color: #ff8100;
+        border-radius: 10px;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: 4px solid #ff8100;
+        padding: 10px 10px;
+        opacity: 95%;
+        margin-bottom: 30px;
+    }
+
+    #navbar h1 {
+        margin-left: 60px;
+    }
+
+    #containers {
+        display: flex;
+        margin-left: 20px;
+    }
+
+    form input {
+        border-radius: 15px;
+        padding: 4px 20px;
+        outline: none;
+        font-size: 16px;
+        font-weight: 550;
+        font-weight: bolder;
+
+    }
+
+    form select {
+        border-radius: 15px;
+        padding: 4px 20px;
+    }
+
+    #container1 {
+        border: 6px solid #ff8100;
+        background: black;
+        padding: 18px;
+        padding-left: 30px;
+        border-radius: 20px;
+        height: 100%;
+        z-index: 2;
+        width: 50%;
+        color: #ff8100;
+        opacity: 95%;
+    }
+
+    #Dsubcontainer {
+        display: flex;
+        border: 6px solid #ff8100;
+        background: black;
+        padding: 18px;
+        border-radius: 15px;
+        height: 200 px;
+        z-index: 2;
+        color: #ff8100;
+        opacity: 95%;
+    }
+
+    #dishimage {
+        height: 80px;
+        border-radius: 5px;
+    }
+
+    #Isubcontainer {
+        border: 6px solid #ff8100;
+        background: black;
+        padding: 20px;
+        border-radius: 15px;
+        height: 250px;
+        overflow: auto;
+        z-index: 2;
+        color: #ff8100;
+        opacity: 95%;
+        margin-top: 10px;
+    }
+
+    #Ssubcontainer {
+        border: 6px solid #ff8100;
+        background: black;
+        padding: 18px;
+        border-radius: 15px;
+        height: 250px;
+        overflow: auto;
+        color: #ff8100;
+        opacity: 95%;
+        margin-top: 10px;
+        box-sizing: border-box;
+    }
+
+    #navbar img {
+        display: inline;
+        height: 40px;
+        filter: invert(0.90)
+    }
+
+    #container2 {
+        text-align: center;
+        transition-timing-function: ease-out;   
+        /* border: 2px solid red; */
+        margin: 20px;
+        width: 40%;
+        overflow: auto;
+        overflow-x: auto;
+    }
+
+    #dishOP {
+        text-decoration: underline;
+        color: #d01111;
+        font-weight: 550px;
+    }
+
+    .mytable {
+        overflow-x: auto;
+        width: 90%;
+        border: 3px solid #ff8100;
+        border-radius: 15px;
+        background: black;
+        color: #ff8100;
+        margin: 30px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #tbody>tr {
+        border-radius: 20px;
+        border-bottom: 3px solid #ff8100;
+        border-top: 3px solid #ff8100;
+    }
+
+    #tbody>tr>td {
+        border-radius: 20px;
+        border: 3px solid #ff8100;
+        overflow: auto;
+    }
+
+    #backbtn {
+        margin: 20px;
+        background: black;
+        color: #ff8100;
+        border: 2px #ff8100;
+        border-radius: 7px;
+        padding: 10px;
+        font-weight: bolder;
+        font-size: 15px
+    }
+
+    #ingtable {
+        width: 100%
+    }
+
+    #tbody>td {
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div id=body>
+        <nav id="navbar">
+            <h1>
+                <img src="./Daco_984161.png">
+                Food Chef
+            </h1>
+        </nav>
+        <div id=containers>
+            <div id="container1">
+                <h4>Fill the form:</h4>
+                <form id="frm" onsubmit="preventDefault()">
+                    <input type="text" placeholder="Enter Your Dish" id="input1">
+                    <br></br>
+                    <input type="link" placeholder="Add Image link" id="input5"><br></br>
+                    <input type="text" placeholder="Enter Your Ingredients" id="input2">
+                    <br></br><input placeholder="Enter Your Quantity" type="number" id="input3">
+                    <select id="choose">
+                        <option value="grams">grams</option>
+                        <option value="litre">Litre</option>
+                        <option value="kilograms">kg</option>
+                        <option value="cup">cup</option>
+                        <option value="spoon">spoon</option>
+                        <option value="pieces">pieces</option>
+                    </select>
+                    <br></br>
+                    <input type="button" class="btn btn-success btn-sm" value="Add" onclick="Add()" id="btn1">
+                    <div id="updatebtnbox"></div>
+                    <br></br>
+                    <h5>Enter the recipe:</h5>
+                    <textarea id="input4" style="width : 60%; height: 150px;"></textarea>
+                    <br></br>
+                    <input type="submit" id="submitbtn" onclick="SubmitAll(); event.preventDefault();"
+                        class="btn btn-success" value="Save Dish Recipe">
+                    <div id="updatebtnbox1"></div>
+                    <br></br>
+                    <input type="button" onclick="AllData();" class="btn btn-primary" value="Get all Dishes">
+
+
+                </form>
+            </div>
+            <div id="container2">
+                <div id="Dsubcontainer">
+                    <h5>Your Dish: <span id="dishOP" style="text-decoration: underline;"></h5>
+                    
+                </div>
+                <div id="Isubcontainer">
+                    <h5>Your Ingredients:</h5>
+                    <table id="ingtable">
+                        <tbody id="listbox" style="text-align:center;">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="Ssubcontainer">
+                    <h5>Steps to Cook:</h5>
+                    <div id="recipeOP"></div>
+                </div>
+            </div>
+        </div>
+        <button id="backbtn" onclick="Back()" style="display: none;">Go back</button>
+
+        <div id="finaltable" style="display: none;">
+            <table class="mytable">
+                <thead>
+                    <tr>
+                        <th>Dish</th>
+                        <th>Image</th>
+                        <th>Ingredients</th>
+                        <th>Recipe to Cook</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+    integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+
+<script>
+
+    let Darr = [];
+    let Iarr = [];
+
+    //============================ADD BUTTON====================================//
+    function Add() {
+        const Ingname = $("#input2").val();
+        const IngQuan = $("#input3").val();
+        const select = $("#choose").val();
+
+        if (Ingname == "") {
+            alert("Please Enter Ingredient Name")
+        }
+        else if (IngQuan == "" || IngQuan == 0) {
+            alert("Enter the Quantity of Ingredient");
+        }
+        else {
+            var Ing = {
+                name: Ingname,
+                quantity: IngQuan,
+                unit: select,
+            }
+            Iarr.push(Ing);
+            console.log(Iarr);
+        }
+
+        ReadIng();
+        $("#input3").val("");
+        $("#input2").val("");
+    }
+
+    //=============================Read===============================//
+    function ReadIng() {
+        $("#listbox").empty();
+
+        var x = '';
+        for (i = 0; i < Iarr.length; i++) {
+
+            x += `<tr>
+                                    <td>${i + 1}.&nbsp&nbsp</td><td> ${Iarr[i].name}&nbsp -&nbsp</td><td>${Iarr[i].quantity}${Iarr[i].unit}</td>
+                                    <td><input class="btn btn-primary btn-sm" type="button" id="E2${i}" value="Edit" onclick="EditIng(${i})"></td>
+                                    <td><input class="btn btn-danger btn-sm" type="button" id="D2${i}" value="X" onclick="DeleteIng(${i})"></td>
+                                  <tr>`
+        }
+        $("#listbox").html(x);
+    }
+
+    //============================Table========================================//
+    function ReadDish() {
+        var data = JSON.parse(localStorage.getItem("Dishes"));
+        const tbody = document.getElementById("tbody");
+
+        tbody.innerHTML = "";
+        var m = '';
+
+        for (i = 0; i < data.length; i++) {
+            var data1 = data[i];
+            var r = '';
+
+            for (j = 0; j < data1.Ingredients.length; j++) {
+                r += `
+                ${j + 1}.  ${data1.Ingredients[j].name} - ${data1.Ingredients[j].quantity} ${data1.Ingredients[j].unit}<br>`
+            }
+
+            m += `<tr>
+                    <td>${i + 1}</td>
+                    <td>${data1.Dish}</td>
+                    <td>${data1.Img}</td>
+                    <td>${r}</td>
+                    <td>${data1.Recipe}</td>
+                    <td><input class="btn btn-primary btn-sm" type="button" id="E${i}" value="Edit"onclick="EditList(${i})">
+                        <input class="btn btn-danger btn-sm" type="button" id="D${i}" value="X"onclick="DeleteList(${i})"></td>
+                        <tr>`
+        }
+        tbody.innerHTML = m;
+    }
+
+    //===============================SUBMIT DISH=====================================//
+    function SubmitAll() {
+        const dish = $("#input1").val();
+        const imglink = $("#input5").val();
+        const Tarea = $("#input4").val();
+        const Dishop = $("#dishOP");
+        const recipeop = $("#recipeOP");
+
+        if (dish == "") {
+            alert("Please Enter Dish Name");
+        }
+        else if (Tarea == "") {
+            alert("Enter the Recipe");
+        }
+        else {
+            dname = {
+                Dish: dish,
+                Img: imglink,
+                Recipe: Tarea,
+                Ingredients: Iarr
+            };
+            Darr.push(dname);
+            console.log(Darr);
+            Dishop.text(dname.Dish);
+            recipeop.text(dname.Recipe);
+            localStorage.setItem("Dishes", JSON.stringify(Darr));
+            Iarr = [];
+            alert("Your Dish has been Added.");
+        }
+    }
+
+    //===============================DISH LIST========================================//
+    function AllData() {
+        $("#containers").css("display", "none");
+        $("#finaltable").css("display", "block");
+        $("#backbtn").css("display", "inline");
+        ReadDish();
+    }
+
+    //==============================BACK=========================================//    
+    function Back() {
+        $("#btn4").css("display", "none");
+        $("#submitbtn").css("display", "inline");
+        $("#finaltable").css("display", "none");
+        $("#backbtn").css("display", "none");
+        $("#containers").css("display", "flex");
+        $("#input1").val("");
+        $("#input2").val("");
+        $("#input3").val("");
+        $("#input4").val("");
+        $("#input5").val("");
+        document.getElementById("dishOP").innerHTML = '';
+        document.getElementById("recipeOP").innerHTML = '';
+        document.getElementById("listbox").innerHTML = '';
+        ReadIng();
+    }
+
+    //================================Delete=======================================//
+
+    //Ingredients
+    function DeleteIng(index1) {
+        const mylist = document.getElementById("mylist");
+        const Ingname = $("#input2").val();
+        const IngQuan = $("#input3").val();
+        let select = $("#choose").val();
+        Iarr.splice(index1, 1);
+        console.log(Iarr);
+        ReadIng();
+    }
+
+    //Table
+    function DeleteList(index) {
+        const table = document.getElementById("tbody");
+        Darr.splice(index, 1);
+        table.deleteRow(index);
+        localStorage.setItem("Dishes", JSON.stringify(Darr));
+        ReadDish();
+    }
+
+    //==================================Edit===========================================//  
+
+    //Ingredient
+    function EditIng(index2) {
+        const Updatebtnbox = document.getElementById("updatebtnbox");
+        $("#btn1").css("display", "none");
+        $("#btn2").css("display", "inline");
+        Updatebtnbox.innerHTML = `<input type = "button" id = "btn2"; onclick = "UpdateIng(${index2})" style = "" value = "Update" class="btn btn-primary btn-sm" > `
+        var value = Iarr[index2];
+        console.log(value);
+        $("#input2").val(value.name);
+        $("#input3").val(value.quantity);
+        $("#choose").val(value.unit);
+    }
+
+    //Table
+    function EditList(index) {
+        const Dishop = $("#dishOP");
+        const Updatebtnbox1 = $("#updatebtnbox1");
+        const listbox = document.getElementById("listbox");
+        const DishName = JSON.parse(localStorage.getItem("Dishes"));
+        $("#btn4").css("display", "inline");
+        $("#submitbtn").css("display", "none");
+        $("#finaltable").css("display", "none");
+        $("#backbtn").css("display", "none");
+        $("#containers").css("display", "flex");
+        $("#input1").val(DishName[index].Dish);
+        $("#input5").val(DishName[index].Img);
+        $("#input4").val(DishName[index].Recipe);
+        Dishop.innerHTML = DishName[index].Dish;
+        listbox.innerHTML = "";
+        Updatebtnbox1.html(`<input type= "button" class="btn btn-success ptn-sm" id="btn4" value = "Update" onclick="Update(${index})"> `)
+    }
+
+    //===============================Update====================================//
+
+    //Ingredients
+    function UpdateIng(index3) {
+        Iarr[index3].name = $("#input2").val();
+        Iarr[index3].quantity = $("#input3").val();
+        Iarr[index3].unit = $("#choose").val();
+        ReadIng();
+        $("#btn1").css("display", "inline");
+        $("#btn2").css("display", "none");
+        console.log(Iarr);
+        $("#input2").val("");
+        $("#input3").val("");
+        $("#input4").val("");
+    }
+
+    //Table
+    function Update(index4) {
+        const Dishop = $("#dishOP");
+        const recipeop = $("#recipeOP");
+        console.log(index4);
+        Darr[index4].Dish = $("#input1").val();
+        Darr[index4].Img = $("#input5").val();
+        Darr[index4].Recipe = $("#input4").val();
+        Darr[index4].Ingredients = Iarr;
+        Dishop.html(Darr[index4].Dish);
+        recipeop.html(Darr[index4].Recipe)
+        localStorage.setItem("Dishes", JSON.stringify(Darr));
+        alert("Your Dish has been updated.");
+    }
+</script>
+
+</html>

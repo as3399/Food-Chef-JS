@@ -7,12 +7,13 @@
     <meta name="viewport" content="width==, initial-scale=1.0">
     <title>Food Chef Task</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" href="./22388-5-burger-food (copy).png">
-   <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./index.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
+
 <body>
     <div id=body>
         <nav id="navbar">
@@ -56,7 +57,7 @@
             <div id="container2">
                 <div id="Dsubcontainer">
                     <h5>Your Dish: <span id="dishOP" style="text-decoration: underline;"></h5>
-                    
+
                 </div>
                 <div id="Isubcontainer">
                     <h5>Your Ingredients:</h5>
@@ -72,12 +73,12 @@
             </div>
         </div>
         <button id="backbtn" onclick="Back()" style="display: none;">Go back</button>
-
+        <input type="text" id="searchbar" style="display: none" onkeyup="myFunction()" placeholder="Search Ingredients">
         <div id="finaltable" style="display: none;">
             <table class="mytable">
                 <thead>
                     <tr>
-                        <th>No.</th>
+
                         <th>Dish</th>
                         <th>Image</th>
                         <th>Ingredients</th>
@@ -112,8 +113,8 @@
         }
         else if (IngQuan == "" || IngQuan == 0) {
             alert("Enter the Quantity of Ingredient");
-        } 
-        else if(select == null){
+        }
+        else if (select == null) {
             alert("Enter Ingredient Unit")
         }
         else {
@@ -128,9 +129,9 @@
             $("#input3").val("");
             $("#input2").val("");
             $("#choose").val(null);
-            
+
         }
-        }
+    }
 
 
     //=============================Read===============================//
@@ -147,7 +148,7 @@
                                   <tr>`
         }
         $("#listbox").html(x);
-       
+
     }
 
     //============================Table========================================//
@@ -168,7 +169,6 @@
             }
 
             m += `<tr>
-                    <td>${i + 1}</td>
                     <td>${data1.Dish}</td>
                     <td>${data1.Img}</td>
                     <td>${r}</td>
@@ -196,13 +196,13 @@
         else if (Tarea == "") {
             alert("Enter the Recipe");
         }
-        else if(Iarr == "") {
+        else if (Iarr == "") {
             alert("Add Ingredient")
         }
-        else if(imglink ==""){
+        else if (imglink == "") {
             alert("Enter Dish image link");
         }
-        else if(dish == Dishopval){
+        else if (dish == Dishopval) {
             alert("Enter a new Dish");
         }
         else {
@@ -224,10 +224,11 @@
 
     //===============================DISH LIST========================================//
     function AllData() {
+        $("#searchbar").css("display", "block");
         $("#containers").css("display", "none");
         $("#finaltable").css("display", "block");
         $("#backbtn").css("display", "inline");
-        Iarr=[];
+        Iarr = [];
         ReadDish();
     }
 
@@ -237,6 +238,7 @@
         $("#submitbtn").css("display", "inline");
         $("#finaltable").css("display", "none");
         $("#backbtn").css("display", "none");
+        $("#searchbar").val("");
         $("#containers").css("display", "flex");
         $("#input1").val("");
         $("#input2").val("");
@@ -246,7 +248,7 @@
         document.getElementById("dishOP").innerHTML = '';
         document.getElementById("recipeOP").innerHTML = '';
         document.getElementById("listbox").innerHTML = '';
-        Iarr=[];
+        Iarr = [];
         ReadIng();
     }
 
@@ -273,12 +275,12 @@
     }
 
     //==================================Edit===========================================//  
-    function getdata(index5){
+    function getdata(index5) {
         const dataget = JSON.parse(localStorage.getItem("Dishes"));
         var inglist = dataget[index5];
-        for(i=0; i < inglist.Ingredients.length; i++){
+        for (i = 0; i < inglist.Ingredients.length; i++) {
             Iarr.push(inglist.Ingredients[i]);
-        }        
+        }
         ReadIng();
     }
     //Ingredient
@@ -299,6 +301,7 @@
     function EditList(index) {
         const Dishop = $("#dishOP");
         const Updatebtnbox1 = $("#updatebtnbox1");
+        const recipeop = $("#recipeOP");
         const listbox = document.getElementById("listbox");
         const DishName = JSON.parse(localStorage.getItem("Dishes"));
         $("#btn4").css("display", "inline");
@@ -309,7 +312,8 @@
         $("#input1").val(DishName[index].Dish);
         $("#input5").val(DishName[index].Img);
         $("#input4").val(DishName[index].Recipe);
-        Dishop.innerHTML = DishName[index].Dish;
+        recipeop.text(DishName[index].Recipe);
+        Dishop.text(DishName[index].Dish);
         listbox.innerHTML = "";
         Updatebtnbox1.html(`<input type= "button" class="btn btn-success ptn-sm" id="btn4" value = "Update" onclick="Update(${index})"> `)
         getdata(`${index}`);
@@ -344,6 +348,25 @@
         recipeop.html(Darr[index4].Recipe)
         localStorage.setItem("Dishes", JSON.stringify(Darr));
         alert("Your Dish has been updated.");
+    }
+    function myFunction() {
+
+        var search = document.getElementById("searchbar").value;
+        var upper = search.toUpperCase();
+        var mytable = document.getElementById("tbody");
+        var tr = mytable.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                var txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(upper) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
 </script>
 

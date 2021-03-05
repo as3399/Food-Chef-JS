@@ -7,6 +7,19 @@ body{
     background:url(./AdobeStock_111615673.jpeg);
     background-size: cover;
 }
+#searchbar{
+    border: 2px solid #ff8100;;
+    border-radius: 8px;
+    background-color: black;
+    padding: 8px 10px;
+    color: #ff8100;
+    font-weight: 700;
+    margin-left: 860px ;
+}
+#searchbar::placeholder{
+    color: #ff8100;
+ 
+}
 #navbar{
     background: black;
     color: #ff8100;

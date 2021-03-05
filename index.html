@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div id=body>
+    <div id=body onload="push()">
         <nav id="navbar">
             <h1>
                 <img src="./Daco_984161.png">
@@ -101,6 +101,11 @@
 
     let Darr = [];
     let Iarr = [];
+
+    function push(){
+        var data = JSON.parse(localStorage.getItem("Dishes"));
+
+    }
 
     //============================ADD BUTTON====================================//
     function Add() {
@@ -228,6 +233,9 @@
         $("#containers").css("display", "none");
         $("#finaltable").css("display", "block");
         $("#backbtn").css("display", "inline");
+        $("#input3").val("");
+        $("#input4").val("");
+        $("#choose").val(null);
         Iarr = [];
         ReadDish();
     }
@@ -308,10 +316,14 @@
         $("#btn4").css("display", "inline");
         $("#submitbtn").css("display", "none");
         $("#finaltable").css("display", "none");
+        $("#searchbar").css("display", "none");
         $("#backbtn").css("display", "none");
         $("#containers").css("display", "flex");
         $("#input1").val(DishName[index].Dish);
         $("#input5").val(DishName[index].Img);
+        $("#input2").val("");
+        $("#input3").val("");
+        $("#choose").val(null);
         $("#input4").val(DishName[index].Recipe);
         recipeop.text(DishName[index].Recipe);
         Dishop.text(DishName[index].Dish);
@@ -330,28 +342,30 @@
         ReadIng();
         $("#btn1").css("display", "inline");
         $("#btn2").css("display", "none");
-        console.log(Iarr);
         $("#input2").val("");
+        $("#choose").val(null);
         $("#input3").val("");
-        $("#input4").val("");
     }
 
     //Table
     function Update(index4) {
         const Dishop = $("#dishOP");
         const recipeop = $("#recipeOP");
-        console.log(index4);
         Darr[index4].Dish = $("#input1").val();
         Darr[index4].Img = $("#input5").val();
         Darr[index4].Recipe = $("#input4").val();
         Darr[index4].Ingredients = Iarr;
+        $("#input2").val("");
+        $("#input3").val("");
+        $("#choose").val(null);
         Dishop.html(Darr[index4].Dish);
         recipeop.html(Darr[index4].Recipe)
         localStorage.setItem("Dishes", JSON.stringify(Darr));
         alert("Your Dish has been updated.");
     }
-    function myFunction() {
 
+    //=============================Searchbar================================//
+    function myFunction() {
         var search = document.getElementById("searchbar").value;
         var upper = search.toUpperCase();
         var mytable = document.getElementById("tbody");
